@@ -4,7 +4,7 @@ package locadora;
 import java.util.ArrayList;
 
 
-public class Empréstimo { // 
+public class Empréstimo { // olá
     private String cliente;
     private ArrayList<Mídia> midias;
     private int ano, mes, dia;
