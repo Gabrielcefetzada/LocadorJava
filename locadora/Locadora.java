@@ -86,20 +86,27 @@ public class Locadora { // olá
 
                             case 3:
                                 System.out.println("Informe o CPF da pessoa que deseja consultar: ");
+                                boolean achou = false;
                                 long cpf_a_consultar = ler.nextLong();
                                 for (int i = 0; i < clientes.size(); i++) {
                                     if (clientes.get(i) instanceof PessoaFísica) {
                                         if (cpf_a_consultar == ((PessoaFísica) clientes.get(i)).getCpf()) {
-                                            System.out.println("Pesso Física encontrada.");
+                                            //System.out.println("Pesso Física encontrada.");
+                                             achou = true;
                                             break;
-                                        } else {
-                                            System.out.println("Pessoa física não encontrada.");
-                                        }
+                                        } 
                                     }
                                 }
+                                
+                                if(achou){
+                                    System.out.println("Pessoa física encontrada.");
+                                    } else {
+                                    System.out.println("Pessoa física não encontrada");
+                                }
+                                
                                 break;
                             case 4:
-                                System.out.println("Lista de pessoas ");     
+                                System.out.println("Lista de pessoas físicas");     
                                 for (int i = 0; i < clientes.size(); i++) {
                                     if (clientes.get(i) instanceof PessoaFísica) {
                                             System.out.println(clientes.get(i).getNome());
