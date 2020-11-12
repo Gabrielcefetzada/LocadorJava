@@ -69,15 +69,13 @@ public class Locadora { // olá
                                 System.out.println("Pessoa Física cadastrada com sucesso.");
 
                                 break;
+
                             case 2:
                                 System.out.println("Informe o CPF da pessoa que deseja remover: ");
                                 long cpf_a_excluir = ler.nextLong();
                                 for (int i = 0; i < clientes.size(); i++) {
-                                    Cliente PessoaAtual = clientes.get(i);// cria uma variavel com a pessoa na posicao i
-                                    if (PessoaAtual instanceof PessoaFísica) {//verifica se é realmente pessoa fisica
-                                        PessoaFísica atual = (PessoaFísica) PessoaAtual;//se sim faz casting
-                                        long cpfDaPessoaAtual = atual.getCpf();//pega o cpf dessa pessoa
-                                        if (cpf_a_excluir == cpfDaPessoaAtual) {//verifica se ele e igual ao da pessoa que tu deseja excluir
+                                    if (clientes.get(i) instanceof PessoaFísica) {//verifica se é realmente pessoa fisica
+                                        if (cpf_a_excluir == ((PessoaFísica) clientes.get(i)).getCpf()) {//verifica se ele e igual ao da pessoa que tu deseja excluir (fazendo casting para que o elemento vire pessoa fisica)
                                             clientes.remove(i);//se sim remove
                                             System.out.println("Pesso Física removida com sucesso.");
                                             break;
@@ -85,11 +83,31 @@ public class Locadora { // olá
                                     }
                                 }
                                 break;
-                            case 3:
 
+                            case 3:
+                                System.out.println("Informe o CPF da pessoa que deseja consultar: ");
+                                long cpf_a_consultar = ler.nextLong();
+                                for (int i = 0; i < clientes.size(); i++) {
+                                    if (clientes.get(i) instanceof PessoaFísica) {
+                                        if (cpf_a_consultar == ((PessoaFísica) clientes.get(i)).getCpf()) {
+                                            System.out.println("Pesso Física encontrada.");
+                                            break;
+                                        } else {
+                                            System.out.println("Pessoa física não encontrada.");
+                                        }
+                                    }
+                                }
                                 break;
                             case 4:
-
+                                System.out.println("Lista de pessoas ");     
+                                for (int i = 0; i < clientes.size(); i++) {
+                                    if (clientes.get(i) instanceof PessoaFísica) {
+                                            System.out.println(clientes.get(i).getNome());
+                                        }
+                                    }
+                                
+                                break;
+                            case 5: // só de dar o break já volta pro menu principal
                                 break;
                             default:
                                 System.out.println("Essa não é uma opção válida.");
