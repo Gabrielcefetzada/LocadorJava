@@ -64,19 +64,32 @@ public class Locadora { // olá
                                 long cpf = ler.nextLong();
                                 System.out.println("Digite as identidade: ");
                                 long id = ler.nextLong();
-                                
-                                        clientes.add(new PessoaFísica(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado));
-                                        System.out.println("Pessoa Física cadastrada com sucesso.");
-                                
+
+                                clientes.add(new PessoaFísica(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado));
+                                System.out.println("Pessoa Física cadastrada com sucesso.");
+
                                 break;
                             case 2:
-                                
+                                System.out.println("Informe o CPF da pessoa que deseja remover: ");
+                                long cpf_a_excluir = ler.nextLong();
+                                for (int i = 0; i < clientes.size(); i++) {
+                                    Cliente PessoaAtual = clientes.get(i);// cria uma variavel com a pessoa na posicao i
+                                    if (PessoaAtual instanceof PessoaFísica) {//verifica se é realmente pessoa fisica
+                                        PessoaFísica atual = (PessoaFísica) PessoaAtual;//se sim faz casting
+                                        long cpfDaPessoaAtual = atual.getCpf();//pega o cpf dessa pessoa
+                                        if (cpf_a_excluir == cpfDaPessoaAtual) {//verifica se ele e igual ao da pessoa que tu deseja excluir
+                                            clientes.remove(i);//se sim remove
+                                            System.out.println("Pesso Física removida com sucesso.");
+                                            break;
+                                        }
+                                    }
+                                }
                                 break;
                             case 3:
-                                
+
                                 break;
                             case 4:
-                               
+
                                 break;
                             default:
                                 System.out.println("Essa não é uma opção válida.");
@@ -86,7 +99,7 @@ public class Locadora { // olá
 
                     if ("pj".equals(pf_ou_pj)) { // pessoa juridica
 
-                    } 
+                    }
                     break;
                 case 2:
                     // code here and submenu
