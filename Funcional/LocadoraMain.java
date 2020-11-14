@@ -1,9 +1,8 @@
 package Funcional;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
-import entidades.Cliente;
-import entidades.PessoaFísica;
+
 
 public class LocadoraMain { // olá
 
@@ -74,12 +73,14 @@ public class LocadoraMain { // olá
 
                             case 2:
                                 
+                                System.out.println("Informe o cpf a ser excluído.");
                                 long cpf_a_excluir = ler.nextLong();
                                 locadora.ExcluirPf(cpf_a_excluir);
                                 
                                 break;
                             case 3:
-
+                                
+                                System.out.println("Informe o CPF da pessoa que deseja remover: ");
                                 long cpf_a_consultar = ler.nextLong();
                                 locadora.ConsultaPf(cpf_a_consultar);
 

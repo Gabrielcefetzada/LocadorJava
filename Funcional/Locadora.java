@@ -3,6 +3,8 @@ package Funcional;
 
 import java.util.ArrayList;
 import entidades.Cliente;
+import entidades.Empréstimo;
+import entidades.Mídia;
 import entidades.PessoaFísica;
 
 
@@ -10,8 +12,10 @@ import entidades.PessoaFísica;
 public class Locadora {
     
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    ArrayList<Mídia> midias = new ArrayList<Mídia>();
+    ArrayList<Empréstimo> emprestimos = new ArrayList<Empréstimo>();
     
-    // Métodos para pessoa física
+    /////////////// Métodos para pessoa física /////////////////
     
      public void CadastraPf(long cpf, long id, int cod, int num, int midias_p_emprestimo, long cep, long tel, String nome, String logradouro, String bairro, String municipio, String estado) {
         clientes.add(new PessoaFísica(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado));
@@ -19,7 +23,6 @@ public class Locadora {
     }
      
       public void ExcluirPf(long cpf_a_excluir) {
-        System.out.println("Informe o CPF da pessoa que deseja remover: ");
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i) instanceof PessoaFísica) {//verifica se é realmente pessoa fisica
                 if (cpf_a_excluir == ((PessoaFísica) clientes.get(i)).getCpf()) {//verifica se ele e igual ao da pessoa que tu deseja excluir (fazendo casting para que o elemento vire pessoa fisica)
