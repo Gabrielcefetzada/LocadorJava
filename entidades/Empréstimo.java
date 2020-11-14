@@ -1,5 +1,5 @@
 
-package locadora;
+package entidades;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,7 @@
-
-package locadora;
-
+package entidades;
 
 public class PessoaFísica extends Cliente { // olá
-    
+
     private long cpf, iddentidade;
 
     public PessoaFísica(long cpf, long iddentidade, int codigo, int numero, int max_de_midias_por_emprestimo, long cep, long telefone, String nome, String logradouro, String bairro, String municipio, String estado) {
@@ -28,5 +26,4 @@ public class PessoaFísica extends Cliente { // olá
         this.iddentidade = iddentidade;
     }
 
-    
 }

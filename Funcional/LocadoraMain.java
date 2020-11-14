@@ -1,13 +1,15 @@
-package locadora;
+package Funcional;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import entidades.Cliente;
+import entidades.PessoaFísica;
 
-public class Locadora { // olá
+public class LocadoraMain { // olá
 
     public static void main(String[] args) {
 
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        Locadora locadora = new Locadora();
         Scanner ler = new Scanner(System.in);
         char continua = 's';
         int opcao;
@@ -40,6 +42,7 @@ public class Locadora { // olá
 
                         switch (opcao_pf) {
                             case 1:
+
                                 System.out.println("Digite o nome: ");
                                 String nome = ler.next();
                                 System.out.println("Digite o logradouro: ");
@@ -65,53 +68,25 @@ public class Locadora { // olá
                                 System.out.println("Digite as identidade: ");
                                 long id = ler.nextLong();
 
-                                clientes.add(new PessoaFísica(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado));
-                                System.out.println("Pessoa Física cadastrada com sucesso.");
+                                locadora.CadastraPf(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado);
 
                                 break;
 
                             case 2:
-                                System.out.println("Informe o CPF da pessoa que deseja remover: ");
+                                
                                 long cpf_a_excluir = ler.nextLong();
-                                for (int i = 0; i < clientes.size(); i++) {
-                                    if (clientes.get(i) instanceof PessoaFísica) {//verifica se é realmente pessoa fisica
-                                        if (cpf_a_excluir == ((PessoaFísica) clientes.get(i)).getCpf()) {//verifica se ele e igual ao da pessoa que tu deseja excluir (fazendo casting para que o elemento vire pessoa fisica)
-                                            clientes.remove(i);//se sim remove
-                                            System.out.println("Pesso Física removida com sucesso.");
-                                            break;
-                                        }
-                                    }
-                                }
+                                locadora.ExcluirPf(cpf_a_excluir);
+                                
                                 break;
-
                             case 3:
-                                System.out.println("Informe o CPF da pessoa que deseja consultar: ");
-                                boolean achou = false;
+
                                 long cpf_a_consultar = ler.nextLong();
-                                for (int i = 0; i < clientes.size(); i++) {
-                                    if (clientes.get(i) instanceof PessoaFísica) {
-                                        if (cpf_a_consultar == ((PessoaFísica) clientes.get(i)).getCpf()) {
-                                            //System.out.println("Pesso Física encontrada.");
-                                             achou = true;
-                                            break;
-                                        } 
-                                    }
-                                }
-                                
-                                if(achou){
-                                    System.out.println("Pessoa física encontrada.");
-                                    } else {
-                                    System.out.println("Pessoa física não encontrada");
-                                }
-                                
+                                locadora.ConsultaPf(cpf_a_consultar);
+
                                 break;
                             case 4:
-                                System.out.println("Lista de pessoas físicas");     
-                                for (int i = 0; i < clientes.size(); i++) {
-                                    if (clientes.get(i) instanceof PessoaFísica) {
-                                            System.out.println(clientes.get(i).getNome());
-                                        }
-                                    }
+                                
+                                locadora.Relatoriopfs();
                                 
                                 break;
                             case 5: // só de dar o break já volta pro menu principal
@@ -126,8 +101,32 @@ public class Locadora { // olá
 
                     }
                     break;
-                case 2:
-                    // code here and submenu
+                case 2: // midia
+
+                    int opcao_midia;
+                    System.out.println("Escolha uma opção: \n"
+                            + "1 para cadastrar uma Mídia\n"
+                            + "2 para excluir uma Mídia\n"
+                            + "3 para consultar a existência de uma Mídia\n"
+                            + "4 para imprimir dados de uma Mídia\n"
+                            + "5 para voltar ao menu principal\n");
+                    opcao_midia = ler.nextInt();
+
+                    switch (opcao_midia) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                        default:
+                            System.out.println("Essa não é uma opcão válida.");
+                            break;
+                    }
                     break;
                 case 3:
                     // code here and submenu

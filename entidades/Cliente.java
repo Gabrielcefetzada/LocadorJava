@@ -1,5 +1,5 @@
 
-package locadora;
+package entidades;
 
 
 public class Cliente { // olá
