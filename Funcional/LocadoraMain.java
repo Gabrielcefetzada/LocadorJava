@@ -1,14 +1,16 @@
 package Funcional;
 
-
 import java.util.Scanner;
-
 
 public class LocadoraMain { // olá
 
     public static void main(String[] args) {
 
         Locadora locadora = new Locadora();
+
+        // Deve-se iniciar o array Clientes com os dados dos integrantes do grupo
+        locadora.CadastraPf(15148677619l, 7890677, 0001, 4185, 3, 12345678, 954097322, "Gabriel_Augusto_Souza_Borges", "Rua_NeymarJR", "Meninos_da_Vila", "Santos", "Sao_Paulo");
+
         Scanner ler = new Scanner(System.in);
         char continua = 's';
         int opcao;
@@ -23,7 +25,7 @@ public class LocadoraMain { // olá
             opcao = ler.nextInt();
 
             switch (opcao) {
-                case 1: // submenus relacionados a cliente
+                case 1:     // cliente
                     String pf_ou_pj;
                     System.out.println("digite pf para pessoa física ou pj para pessoa jurídica.");
                     pf_ou_pj = ler.next();
@@ -72,23 +74,23 @@ public class LocadoraMain { // olá
                                 break;
 
                             case 2:
-                                
+
                                 System.out.println("Informe o cpf a ser excluído.");
                                 long cpf_a_excluir = ler.nextLong();
                                 locadora.ExcluirPf(cpf_a_excluir);
-                                
+
                                 break;
                             case 3:
-                                
+
                                 System.out.println("Informe o CPF da pessoa que deseja remover: ");
                                 long cpf_a_consultar = ler.nextLong();
                                 locadora.ConsultaPf(cpf_a_consultar);
 
                                 break;
                             case 4:
-                                
+
                                 locadora.Relatoriopfs();
-                                
+
                                 break;
                             case 5: // só de dar o break já volta pro menu principal
                                 break;
@@ -115,14 +117,43 @@ public class LocadoraMain { // olá
 
                     switch (opcao_midia) {
                         case 1:
+                            
+                            System.out.println("Digite o Título: ");
+                            String titulo = ler.next();
+                            System.out.println("Digite o código: ");
+                            int cod = ler.nextInt();
+                            System.out.println("Digite a sinopse: ");
+                            String sinopse = ler.next();
+                            System.out.println("Digite o gênero: ");
+                            String genero = ler.next();
+                            System.out.println("Digite o preço: ");
+                            double preco = ler.nextDouble();
+                            System.out.println("É dublado? ");
+                            boolean dublado = ler.nextBoolean();
+                            
+                            locadora.CadastrarMídia(titulo, sinopse, genero, dublado, preco, cod);
+                            
                             break;
                         case 2:
+                            
+                            System.out.println("Digite o titulo para ser excluído: ");
+                            String titulo_a_excluir = ler.next();
+                            locadora.ExcluirMídia(titulo_a_excluir);
+                            
                             break;
                         case 3:
+                            
+                            System.out.println("Digite o titulo para consultar disponiblilidade: ");
+                            String titulo_a_consultar = ler.next();
+                            locadora.ConsultaMídia(titulo_a_consultar);
+                            
                             break;
                         case 4:
+                            
+                            locadora.RelatórioMídia();
+                            
                             break;
-                        case 5:
+                        case 5: // só de ter um break, voltamos ao menu principal
                             break;
                         default:
                             System.out.println("Essa não é uma opcão válida.");
@@ -147,3 +178,7 @@ public class LocadoraMain { // olá
     }
 
 }
+
+// ERROS A CORRIGIR
+// DOUBLE NO MIDIA
+// PROBLEMA PARA LER STRINGS COM ESPAÇO
