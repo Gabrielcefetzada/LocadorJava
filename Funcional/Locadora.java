@@ -5,6 +5,7 @@ import entidades.Cliente;
 import entidades.Empréstimo;
 import entidades.Mídia;
 import entidades.PessoaFísica;
+import entidades.PessoaJurídica;
 
 public class Locadora {
 
@@ -97,6 +98,49 @@ public class Locadora {
     public void RelatórioMídia() {
         for (int i = 0; i < midias.size(); i++) {
             System.out.println("Lista de mídias\n" + "título: " + midias.get(i).getTitulo() + "\n" + "código: " + midias.get(i).getCodigo() + "\n");
+        }
+    }
+    
+    public void CadastrarPj(long cnpj, long inscricao_estadual, int cod, String nome, String logradouro, int num, String bairro, String estado, long cep, long tel, int max_midias_p_emprest){
+        clientes.add(new PessoaJurídica(cnpj, inscricao_estadual, cod, num, max_midias_p_emprest, cep, tel, nome, logradouro, bairro, bairro, estado));
+    }
+    
+    public void ExcluirPj(long cnpj_a_excluir){
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i) instanceof PessoaJurídica){ 
+                if(cnpj_a_excluir == ((PessoaJurídica) clientes.get(i)).getCnpj()){
+                    clientes.remove(i);
+                    break;
+                }
+            }
+        }
+    }
+    
+    public void ConsultaPj(long cnpj_a_consultar){
+        boolean achou = false;
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i) instanceof PessoaJurídica){ 
+                if(cnpj_a_consultar == ((PessoaJurídica) clientes.get(i)).getCnpj()){
+                    achou = true;
+                    break;
+                }
+            }
+        }
+        
+        if(achou){
+            System.out.println("Pessoa jurídica encontrada.");
+        } else {
+            System.out.println("Pessoa jurídica não encontrada.");
+        }
+        
+    }
+    
+    public void RelatótioPjs(){
+        for(int i = 0; i < clientes.size(); i++){
+            if(clientes.get(i) instanceof PessoaJurídica){ 
+                System.out.println("Nome: " + clientes.get(i).getNome() +
+                        "\n" + "Cnpj: " + ((PessoaJurídica) clientes.get(i)).getCnpj() + "\n");
+            }
         }
     }
 

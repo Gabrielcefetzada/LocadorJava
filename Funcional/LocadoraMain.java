@@ -10,9 +10,9 @@ public class LocadoraMain { // olá
 
         // Deve-se iniciar o array Clientes com os dados dos integrantes do grupo
         locadora.CadastraPf(15148677619l, 7890677, 0001, 4185, 3, 12345678, 954097322, "Gabriel Augusto Souza Borges", "Rua NeymarJR", "Meninos da Vila", "Santos", "São Paulo");
-        locadora.CadastraPf(15148677619l, 3434343, 0002, 4100, 2, 12345679, 40028922, "Gustavo Boeira Silva", "Rua das Palhas Queimadas", "Cigarette", "Dourados", "Mato Grosso do Sul");
-        locadora.CadastraPf(15148677619l, 1111111, 0003, 77, 3, 12345670, 33331111, "Igor Moura Martins", "Avenida Professor Lincolau", "Morro das Jogatinas", "Belo Horizonte", "Minas Gerais");
-        locadora.CadastraPf(15148677619l, 5675670, 0004, 23, 1, 12345600, 99876523, "Pedro Rabelo de Freitas", "Rua CuteLoL", "Rua Romero Britto Neto", "Rio de Janeiro", "Rio de Janeiro");
+        locadora.CadastraPf(15148377620l, 3434343, 0002, 4100, 2, 12345679, 40028922, "Gustavo Boeira Silva", "Rua das Palhas Queimadas", "Cigarette", "Dourados", "Mato Grosso do Sul");
+        locadora.CadastraPf(10148600619l, 1111111, 0003, 77, 3, 12345670, 33331111, "Igor Moura Martins", "Avenida Professor Lincolau", "Morro das Jogatinas", "Belo Horizonte", "Minas Gerais");
+        locadora.CadastraPf(25148877619l, 5675670, 0004, 23, 1, 12345600, 99876523, "Pedro Rabelo de Freitas", "Rua 可愛いLoL", "Rua Romero Britto Neto", "Rio de Janeiro", "Rio de Janeiro");
 
         Scanner ler = new Scanner(System.in);
         char continua = 's';
@@ -69,7 +69,7 @@ public class LocadoraMain { // olá
                                 long tel = ler.nextLong();
                                 System.out.println("Digite cpf: ");
                                 long cpf = ler.nextLong();
-                                System.out.println("Digite as identidade: ");
+                                System.out.println("Digite a identidade: ");
                                 long id = ler.nextLong();
 
                                 locadora.CadastraPf(cpf, id, cod, num, midias_p_emprestimo, cep, tel, nome, logradouro, bairro, municipio, estado);
@@ -105,6 +105,67 @@ public class LocadoraMain { // olá
 
                     if ("pj".equals(pf_ou_pj)) { // pessoa juridica
 
+                        System.out.println("Escolha uma opção: \n"
+                                + "1 para cadastrar uma Pessoa Jurídica\n"
+                                + "2 para excluir uma Pessoa Jurídica\n"
+                                + "3 para consultar a existência de uma Pessoa Jurídica\n"
+                                + "4 para imprimir dados de uma Pessoa Jurídica\n"
+                                + "5 para voltar ao menu principal\n");
+
+                        int opcao_pj = ler.nextInt();
+                        switch (opcao_pj) {
+                            case 1:
+                                
+                                System.out.println("Digite o Cnpj: ");
+                                long cnpj = ler.nextLong();
+                                System.out.println("Digite o numéro da inscrição estadual: ");
+                                long inscricao_estadual = ler.nextLong();
+                                System.out.println("Digite o nome: ");
+                                String nome = ler.next();
+                                System.out.println("Digite o logradouro: ");
+                                String logradouro = ler.next();
+                                System.out.println("Digite o bairro: ");
+                                String bairro = ler.next();
+                                System.out.println("Digite o município: ");
+                                String municipio = ler.next();
+                                System.out.println("Digite o estado: ");
+                                String estado = ler.next();
+                                System.out.println("Digite o código: ");
+                                int cod = ler.nextInt();
+                                System.out.println("Digite o número: ");
+                                int num = ler.nextInt();
+                                System.out.println("Digite o maximo de midias por empréstimo: ");
+                                int midias_p_emprestimo = ler.nextInt();
+                                System.out.println("Digite o cep: ");
+                                long cep = ler.nextLong();
+                                System.out.println("Digite o telefone: ");
+                                long tel = ler.nextLong();
+                                
+                                locadora.CadastrarPj(cnpj, inscricao_estadual, cod, nome, logradouro, num, bairro, estado, cep, tel, midias_p_emprestimo);
+                                
+                                break;
+                            case 2:
+                                
+                                long cnpj_a_excluir = ler.nextLong();
+                                locadora.ExcluirPj(cnpj_a_excluir);
+                                
+                                break;
+                                
+                            case 3:
+                                
+                                long cnpj_a_consultar = ler.nextLong();
+                                locadora.ConsultaPj(cnpj_a_consultar);
+                                
+                                break;
+                            case 4:
+                                
+                                locadora.RelatótioPjs();
+                                
+                                break;
+                            case 5: // só de chegar no break já volta pro menu principal
+                                break;
+                        }
+
                     }
                     break;
                 case 2: // midia
@@ -120,7 +181,7 @@ public class LocadoraMain { // olá
 
                     switch (opcao_midia) {
                         case 1:
-                            
+
                             System.out.println("Digite o Título: ");
                             String titulo = ler.next();
                             System.out.println("Digite o código: ");
@@ -133,28 +194,28 @@ public class LocadoraMain { // olá
                             double preco = ler.nextDouble();
                             System.out.println("É dublado? ");
                             boolean dublado = ler.nextBoolean();
-                            
+
                             locadora.CadastrarMídia(titulo, sinopse, genero, dublado, preco, cod);
-                            
+
                             break;
                         case 2:
-                            
+
                             System.out.println("Digite o titulo para ser excluído: ");
                             String titulo_a_excluir = ler.next();
                             locadora.ExcluirMídia(titulo_a_excluir);
-                            
+
                             break;
                         case 3:
-                            
+
                             System.out.println("Digite o titulo para consultar disponiblilidade: ");
                             String titulo_a_consultar = ler.next();
                             locadora.ConsultaMídia(titulo_a_consultar);
-                            
+
                             break;
                         case 4:
-                            
+
                             locadora.RelatórioMídia();
-                            
+
                             break;
                         case 5: // só de ter um break, voltamos ao menu principal
                             break;
