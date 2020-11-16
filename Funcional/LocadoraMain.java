@@ -9,7 +9,10 @@ public class LocadoraMain { // olá
         Locadora locadora = new Locadora();
 
         // Deve-se iniciar o array Clientes com os dados dos integrantes do grupo
-        locadora.CadastraPf(15148677619l, 7890677, 0001, 4185, 3, 12345678, 954097322, "Gabriel_Augusto_Souza_Borges", "Rua_NeymarJR", "Meninos_da_Vila", "Santos", "Sao_Paulo");
+        locadora.CadastraPf(15148677619l, 7890677, 0001, 4185, 3, 12345678, 954097322, "Gabriel Augusto Souza Borges", "Rua NeymarJR", "Meninos da Vila", "Santos", "São Paulo");
+        locadora.CadastraPf(15148677619l, 3434343, 0002, 4100, 2, 12345679, 40028922, "Gustavo Boeira Silva", "Rua das Palhas Queimadas", "Cigarette", "Dourados", "Mato Grosso do Sul");
+        locadora.CadastraPf(15148677619l, 1111111, 0003, 77, 3, 12345670, 33331111, "Igor Moura Martins", "Avenida Professor Lincolau", "Morro das Jogatinas", "Belo Horizonte", "Minas Gerais");
+        locadora.CadastraPf(15148677619l, 5675670, 0004, 23, 1, 12345600, 99876523, "Pedro Rabelo de Freitas", "Rua CuteLoL", "Rua Romero Britto Neto", "Rio de Janeiro", "Rio de Janeiro");
 
         Scanner ler = new Scanner(System.in);
         char continua = 's';
@@ -82,7 +85,7 @@ public class LocadoraMain { // olá
                                 break;
                             case 3:
 
-                                System.out.println("Informe o CPF da pessoa que deseja remover: ");
+                                System.out.println("Informe o cpf a ser consultado.");
                                 long cpf_a_consultar = ler.nextLong();
                                 locadora.ConsultaPf(cpf_a_consultar);
 

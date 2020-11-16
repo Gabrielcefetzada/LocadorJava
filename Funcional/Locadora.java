@@ -31,7 +31,6 @@ public class Locadora {
     }
 
     public void ConsultaPf(long cpf_a_consultar) {
-        System.out.println("Informe o CPF da pessoa que deseja consultar: ");
         boolean achou = false;
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i) instanceof PessoaFísica) {
@@ -53,7 +52,12 @@ public class Locadora {
         System.out.println("Lista de pessoas físicas");
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i) instanceof PessoaFísica) {
-                System.out.println(clientes.get(i).getNome());
+                System.out.println(clientes.get(i).getNome() + 
+                        "\n" + "CPF: " + ((PessoaFísica) clientes.get(i)).getCpf() +
+                        "\n" + "Cep: " + clientes.get(i).getCep() + 
+                        "\n" + "Número: " + clientes.get(i).getNumero() +
+                        "\n" + "Telefone: " + clientes.get(i).getTelefone() + 
+                        "\n");
             }
         }
     }
@@ -81,12 +85,12 @@ public class Locadora {
             }
 
         }
-        
+
         if (achou) {
-                System.out.println("Mídia encontrada.");
-            } else {
-                System.out.println("Mídia não encontrada.");
-            }
+            System.out.println("Mídia encontrada.");
+        } else {
+            System.out.println("Mídia não encontrada.");
+        }
 
     }
 
