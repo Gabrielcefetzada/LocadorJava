@@ -3,6 +3,10 @@ package Funcional;
 import java.util.Scanner;
 
 public class LocadoraMain { // olá
+    // Um problema que não conseguimos solucionar e pensamos que não afetará no bom funcionamento do código
+    // é que ao ler inputs do tipo String que possuem espaço, a IDE está entendendo que é outra variável. Portanto
+    // se colocarmos o caracter '_' para representar uma String com espaço é o ideal.
+    // Exemplo: Nome: Roberto_Firmino
 
     public static void main(String[] args) {
 
@@ -15,7 +19,7 @@ public class LocadoraMain { // olá
         locadora.CadastraPf(25148877619l, 5675670, 0004, 23, 1, 12345600, 99876523, "Pedro Rabelo de Freitas", "Rua 可愛いLoL", "Rua Romero Britto Neto", "Rio de Janeiro", "Rio de Janeiro");
 
         Scanner ler = new Scanner(System.in);
-        char continua = 's';
+        char continua = 's'; // variavel que devemos digitar após a realização de um método para continuar ou não manipulando a Locadora
         int opcao;
 
         do {
@@ -23,7 +27,7 @@ public class LocadoraMain { // olá
                     + "Digite 1 para manipular Cliente\n"
                     + "Digite 2 para manipular Mídia\n"
                     + "Digite 3 para manipular Empréstimo\n"
-                    + "Digite 4 para Sair\n");
+                    + "Digite 4 para Sair\n"); // quando apertamos 4, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
 
             opcao = ler.nextInt();
 
@@ -95,7 +99,7 @@ public class LocadoraMain { // olá
                                 locadora.Relatoriopfs();
 
                                 break;
-                            case 5: // só de dar o break já volta pro menu principal
+                            case 5: // quando apertamos 5, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
                                 break;
                             default:
                                 System.out.println("Essa não é uma opção válida.");
@@ -110,7 +114,7 @@ public class LocadoraMain { // olá
                                 + "2 para excluir uma Pessoa Jurídica\n"
                                 + "3 para consultar a existência de uma Pessoa Jurídica\n"
                                 + "4 para imprimir dados de uma Pessoa Jurídica\n"
-                                + "5 para voltar ao menu principal\n");
+                                + "5 para voltar ao menu principal\n"); // quando apertamos 5, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
 
                         int opcao_pj = ler.nextInt();
                         switch (opcao_pj) {
@@ -165,7 +169,7 @@ public class LocadoraMain { // olá
                                 locadora.RelatótioPjs();
 
                                 break;
-                            case 5: // só de chegar no break já volta pro menu principal
+                            case 5: // quando apertamos 5, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
                                 break;
                         }
 
@@ -195,7 +199,7 @@ public class LocadoraMain { // olá
                             System.out.println("Digite o gênero: ");
                             String genero = ler.next();
                             System.out.println("Digite o preço: ");
-                            double preco = ler.nextDouble();
+                            float preco = ler.nextFloat(); // devos consultar esse preço e digitar o mesmo na hora de cadastrar um empréstimo
                             System.out.println("É dublado? ");
                             boolean dublado = ler.nextBoolean();
 
@@ -221,7 +225,7 @@ public class LocadoraMain { // olá
                             locadora.RelatórioMídia();
 
                             break;
-                        case 5: // só de ter um break, voltamos ao menu principal
+                        case 5: // quando apertamos 5, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
                             break;
                         default:
                             System.out.println("Essa não é uma opcão válida.");
@@ -258,23 +262,48 @@ public class LocadoraMain { // olá
                             
                             locadora.RegistraEmprestimo(cliente, midia_emprestimo, ano, mes, dia, valor, multa);
                             
-                            System.out.println("Foi devolvido? ");
-                            boolean devolvido = ler.nextBoolean();
-                            
                             locadora.ExcluirMídia(midia_emprestimo); // como foi emprestada, devemos tirar a midia do array de midias
-                            locadora.Valor_a_ser_pago(valor, devolvido, multa);
+                            locadora.Valor_a_ser_pago(valor,  multa);
                            
                             break;
                         case 2:
+                            
+                            System.out.println("Digite o cliente que devolverá uam obra: ");
+                            String clientee = ler.next();
+                            System.out.println("Digite o título da obra que será devolvida por ele: ");
+                            String midia_emprestimoo = ler.next();
+                            
+                            locadora.DevolucaoEmprestimo(clientee, midia_emprestimoo);
+                            System.out.println("");
+                            
+                            System.out.println("Readicione a mídia devolvida na Locadora"); // pós devolução de uma mídia, deve-se readiciona-la no aarray midias
+                            
+                            System.out.println("Digite o Título: ");
+                            String titulo = ler.next();
+                            System.out.println("Digite o código: ");
+                            int cod = ler.nextInt();
+                            System.out.println("Digite a sinopse: ");
+                            String sinopse = ler.next();
+                            System.out.println("Digite o gênero: ");
+                            String genero = ler.next();
+                            System.out.println("Digite o preço: ");
+                            float preco = ler.nextFloat();
+                            System.out.println("É dublado? ");
+                            boolean dublado = ler.nextBoolean();
+                            System.out.println("");
+                            locadora.CadastrarMídia(titulo, sinopse, genero, dublado, preco, cod);
+                            System.out.println("Mídia recadastrada.");
+                            
                             break;
                         case 3:
                             
                             locadora.RelatótrioEmprestimos();
                             
                             break;
-                        case 4:
+                        case 4: // quando apertamos 4, é nos direcionado para pergunta se queremos continuar manipulando a locadora, se sim, voltamos ao menu principal.
                             break;
                     }
+                case 4:
 
                     break;
                 default:
@@ -290,7 +319,4 @@ public class LocadoraMain { // olá
 
 }
 
-// -- ERROS A OU MELHORIAS A CORRIGIR --
-// DOUBLE NO MIDIA
-// PROBLEMA PARA LER STRINGS COM ESPAÇO
-// NÃO PASSAR UM CLIENTE E UMA MÍDIA INTEIRA NO ARRAY EMPRÉSTIMO. PASSAR APENAS O NOME E TITULO RESPECTIVAMENTE.
+

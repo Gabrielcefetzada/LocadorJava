@@ -64,7 +64,7 @@ public class Locadora {
     }
 
     //////////////// MÉTODOS PARA MÍDIA /////////////////
-    public void CadastrarMídia(String titulo, String sinopse, String genero, boolean dublado, double preco_locacao, int codigo) {
+    public void CadastrarMídia(String titulo, String sinopse, String genero, boolean dublado, float preco_locacao, int codigo) {
         midias.add(new Mídia(titulo, sinopse, genero, dublado, preco_locacao, codigo));
     }
 
@@ -97,7 +97,8 @@ public class Locadora {
 
     public void RelatórioMídia() {
         for (int i = 0; i < midias.size(); i++) {
-            System.out.println("Lista de mídias\n" + "título: " + midias.get(i).getTitulo() + "\n" + "código: " + midias.get(i).getCodigo() + "\n");
+            System.out.println("Lista de mídias\n" + "título: " + midias.get(i).getTitulo() + "\n" + "código: " + midias.get(i).getCodigo() + "\n" +
+                    "\n" + "Preço: " + midias.get(i).getPreco_locacao());
         }
     }
 
@@ -149,34 +150,44 @@ public class Locadora {
     public void RegistraEmprestimo(String cliente, String midia_emprestimo, int ano, int mes, int dia, float valor, float multa) {
         boolean midia_igual = false;
         boolean cliente_igual = false;
-        
-            for (int j = 0; j < clientes.size(); j++) {
-                if (cliente.equals(clientes.get(j).getNome())) {
-                    cliente_igual = true;
-                }
-            }
-            for (int j = 0; j < midias.size(); j++) {
-                if (midia_emprestimo.equals(midias.get(j).getTitulo())) {
-                    midia_igual = true;
-                }
-            }
 
-            if (midia_igual == true && cliente_igual == true) {
-                emprestimos.add(new Empréstimo(cliente, midia_emprestimo, ano, mes, dia, valor, multa));
-                System.out.println("Empréstimo realizado.");
-            } else {
-                System.out.println("O empréstimo não pode ser realizado.");
-                System.out.println("" + cliente_igual + midia_igual);
+        for (int j = 0; j < clientes.size(); j++) {
+            if (cliente.equals(clientes.get(j).getNome())) {
+                cliente_igual = true;
             }
-
+        }
+        for (int j = 0; j < midias.size(); j++) {
+            if (midia_emprestimo.equals(midias.get(j).getTitulo())) {
+                midia_igual = true;
+            }
         }
 
-    public void Valor_a_ser_pago(float valor, boolean devolvido, float multa) {
-        if (devolvido == false) {
-            float soma = valor + multa;
-            System.out.println("Caso o empréstimo foi realizado, valor a ser pago: " + soma);
+        if (midia_igual == true && cliente_igual == true) {
+            emprestimos.add(new Empréstimo(cliente, midia_emprestimo, ano, mes, dia, valor, multa));
+            System.out.println("Empréstimo realizado.");
         } else {
-            System.out.println("Caso o empréstimo foi realizado, valor a ser pago: " + valor);
+            System.out.println("O empréstimo não pode ser realizado.");
+            System.out.println("" + cliente_igual + midia_igual);
+        }
+
+    }
+
+    public void Valor_a_ser_pago(float valor, float multa) {
+        
+            float soma = valor + multa;
+            System.out.println("Caso a devolução for realizada dentro do prazo, valor a ser pago: " + valor);
+            System.out.println("Caso a devolução for realizada fora do prazo, valor a ser pago: " + soma);
+        
+    }
+
+    public void DevolucaoEmprestimo(String cliente, String midia_emprestimo) {
+        boolean devolvido = false;
+        for (int i = 0; i < emprestimos.size(); i++) {
+            if (cliente.equals(emprestimos.get(i).getCliente()) && (midia_emprestimo.equals(emprestimos.get(i).getMidia_emprestimo()))) {
+                emprestimos.remove(i);
+                System.out.println("Empréstimo devolvido com sucesso.");
+                devolvido = true;
+            }
         }
     }
 
