@@ -6,20 +6,19 @@ import java.util.ArrayList;
 
 public class Empréstimo { // olá
     private String cliente;
-    private ArrayList<Mídia> midias;
+    private String midia_emprestimo;
     private int ano, mes, dia;
     private float valor, multa;
-    private boolean devolvido;
+    private boolean devolvido; // devolvido eu só vou saber o valor quando eu já tiver realizado o empréstimo.
 
-    public Empréstimo(String cliente, ArrayList<Mídia> midias, int ano, int mes, int dia, float valor, float multa, boolean devolvido) {
+    public Empréstimo(String cliente, String midia_emprestimo, int ano, int mes, int dia, float valor, float multa) {
         this.cliente = cliente;
-        this.midias = midias;
+        this.midia_emprestimo = midia_emprestimo;
         this.ano = ano;
         this.mes = mes;
         this.dia = dia;
         this.valor = valor;
         this.multa = multa;
-        this.devolvido = devolvido;
     }
 
     public String getCliente() {
@@ -30,12 +29,12 @@ public class Empréstimo { // olá
         this.cliente = cliente;
     }
 
-    public ArrayList<Mídia> getMidias() {
-        return midias;
+    public String getMidia_emprestimo() {
+        return midia_emprestimo;
     }
 
-    public void setMidias(ArrayList<Mídia> midias) {
-        this.midias = midias;
+    public void setMidia_emprestimo(String midia_emprestimo) {
+        this.midia_emprestimo = midia_emprestimo;
     }
 
     public int getAno() {
